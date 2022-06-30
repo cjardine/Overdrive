@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+    function initializeApp() {
+        window.App = new Overdrive({
+            name: 'App',
+            element: 'body',
+            initializationFunction: function (root, element) {
+                let content = document.createElement('cj-hello');
+                element.appendChild(content);
+            },
+            modules: []
+        });
+
+
+        App.control({
+            name: 'cj-hello',
+            elementName: 'cj-hello',
+            //language=HTML
+            template: `<p>hello <span data-od-bind="name"></span></p>
+            <p>Name: <input type="text" data-od-bind="name"></p>
+            <p>Name: <input type="text" data-od-bind="name"></p>
+            <button data-od-click="doAlert" data-od-auxclick="doAlert2">Alert it!</button>
+            <ul>
+                <li data-od-for="item in items">
+                    <p data-od-bind="name"></p>
+                </li>
+            </ul>
+            `,
+            constructorFunction: function (scope) {
+                scope.name = 'Chris';
+                scope.doAlert = function () {
+                    alert(scope.name);
+                };
+                scope.doAlert2 = function () {
+                    alert('scope.name');
+                };
+                scope.items = [];
+            }
+        });
+
+
+        App.control({
+            name: 'cj-goodbye',
+            elementName: 'cj-goodbye',
+            //language=HTML
+            template: `<p>Goodbye <span data-od-bind="name"></span></p>
+            <p>Name: <input type="text" data-od-bind="name"></p>
+            <p>Name: <input type="text" data-od-bind="name"></p>
+            <button data-od-click="doAlert" data-od-auxclick="doAlert2">Alert it!</button>
+            <ul>
+                <li data-od-for="item in items">
+                    <p data-od-bind="name"></p>
+                </li>
+            </ul>
+            `,
+            constructorFunction: function (scope) {
+                scope.name = 'Jardine';
+                scope.doAlert = function () {
+                    alert(scope.name);
+                };
+                scope.doAlert2 = function () {
+                    alert('scope.name');
+                };
+            }
+        });
+    }
+
+    window.addEventListener('load', initializeApp);
+
+</script>
+<script src="Overdrive.js" type="text/javascript"></script>
+<script src="OverdriveError.js" type="text/javascript"></script>
+<script src="OverdriveControl.js" type="text/javascript"></script>
+</body>
+</html>
